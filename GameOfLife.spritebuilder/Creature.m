@@ -27,6 +27,7 @@ _ (void)flipState {
     _isAlive = [self newState:!_isAlive];
     
 }
+
 - (void)setIsAlive:(BOOL)newState {
 
     _isAlive = newState;
