@@ -141,6 +141,11 @@ float _cellHeight;
             
             Creature *currentCreature = _gridArray[i][j];
             
+            if(currentCreature.isAlive)
+            {
+                _totalAlive++;
+            }
+            
             if(currentCreature.livingNeighbors == 3) {
                 [currentCreature setIsAlive:YES];
             }
