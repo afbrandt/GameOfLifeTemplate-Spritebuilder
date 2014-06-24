@@ -21,6 +21,12 @@
     return self;
 }
 
+
+_ (void)flipState {
+
+    _isAlive = [self newState:!_isAlive];
+    
+}
 - (void)setIsAlive:(BOOL)newState {
 
     _isAlive = newState;
@@ -29,10 +35,5 @@
     self.visible = _isAlive;
 }
 
-_ (void)flipState {
-
-    _isAlive = [self newState:!_isAlive];
-    
-}
 
 @end
