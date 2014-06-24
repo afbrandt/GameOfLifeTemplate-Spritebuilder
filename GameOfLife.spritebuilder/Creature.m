@@ -29,4 +29,10 @@
     self.visible = _isAlive;
 }
 
+_ (void)flipState {
+
+    _isAlive = [self newState:!_isAlive];
+    
+}
+
 @end

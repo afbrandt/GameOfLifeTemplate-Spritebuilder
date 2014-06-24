@@ -55,13 +55,30 @@ float _cellHeight;
             _gridArray[i][j] = creature;
             
             //used to validate proper initialization
-            creature.isAlive = YES;
+            //creature.isAlive = YES;
             
             x+=_cellWidth;
         }
         
         y+=_cellHeight;
     }
+}
+
+-(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+
+    CGPoint touchLocation = [touch locationInNode:self];
+    
+    Creature *creature = [self creatureForTouchPosition:touchLocation];
+    
+    [creature flipState];
+}
+
+- (Creature *)creatureForTouchPosition:(CGPoint)touchPosition {
+
+    int row = touchPosition.y/_cellHeight;
+    int column = touchPosition.x/_cellWidth;
+
+    return _gridArray[row][column];
 }
 
 @end
