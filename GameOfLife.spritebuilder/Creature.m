@@ -22,9 +22,9 @@
 }
 
 
-_ (void)flipState {
+- (void)flipState {
 
-    _isAlive = [self newState:!_isAlive];
+    [self setIsAlive:!_isAlive];
     
 }
 
