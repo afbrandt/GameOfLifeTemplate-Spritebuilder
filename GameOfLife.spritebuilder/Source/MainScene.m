@@ -39,8 +39,8 @@ CCLabelTTF *_populationScoreLabel;
 - (void)step {
     [_grid evolveStep];
     
-    _generationScoreLabel = [NSString stringWithFormat:@"%d", _grid.generation];
-    _populationScoreLabel = [NSString stringWithFormat:@"%d", _grid.totalAlive];
+    _generationScoreLabel.string = [NSString stringWithFormat:@"%d", _grid.generation];
+    _populationScoreLabel.string = [NSString stringWithFormat:@"%d", _grid.totalAlive];
 }
 
 @end
