@@ -81,4 +81,75 @@ float _cellHeight;
     return _gridArray[row][column];
 }
 
+- (void)evolveStep {
+
+    [self countNeighbors];
+    
+    [self updateCreatures];
+    
+    _generation++;
+}
+
+- (void)countNeighbors {
+
+    for(int i = 0; [_gridArray count]; i++) {
+        
+        for(int j = 0; [_gridArray[i] count]; j++) {
+            
+            Creature *currentCreature = _gridArray[i][j];
+            
+            currentCreature.livingNeighbors = 0;
+            
+            for (int x = (i-1); x <= (i+1); x++) {
+            
+                for (int y = (j-1); y <= (j+1); y++) {
+                  
+                    // check that the cell we're checking isn't off the screen
+                    BOOL isIndexValid;
+                    isIndexValid = [self isIndexValidForX:x andY:y];
+
+                    // skip over all cells that are off screen AND the cell that contains the creature we are currently updating
+                    if (!((x == i) && (y == j)) && isIndexValid) {
+
+                        Creature *neighbor = _gridArray[x][y];
+                        if (neighbor.isAlive) {
+             
+                            currentCreature.livingNeighbors += 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+- (BOOL)isIndexValidForX:(int)x andY:(int)y
+{
+  BOOL isIndexValid = YES;
+  if(x < 0 || y < 0 || x >= GRID_ROWS || y >= GRID_COLUMNS)
+  {
+    isIndexValid = NO;
+  }
+  return isIndexValid;
+}
+
+- (void)updateCreatures {
+
+    for(int i = 0; [_gridArray count]; i++) {
+        
+        for(int j = 0; [_gridArray[i] count]; j++) {
+            
+            Creature *currentCreature = _gridArray[i][j];
+            
+            if(currentCreature.livingNeighbors == 3) {
+                [currentCreature setIsAlive:YES];
+            }
+            
+            if(currentCreature.livingNeighbors >=4 || currentCreature.livingNeighbors <=1) {
+                [currentCreature setIsAlive:NO];
+            }
+        }
+    }
+}
+
 @end

@@ -7,7 +7,40 @@
 //
 
 #import "MainScene.h"
+#import "Grid.h"
 
 @implementation MainScene
+
+Grid *_grid;
+CCTimer *_timer;
+CCLabelTTF *_generationScoreLabel;
+CCLabelTTF *_populationScoreLabel;
+
+- (id)init {
+    self = [super init];
+    
+    if (self) {
+        _timer = [[CCTimer alloc] init];
+    }
+    
+    return self;
+}
+
+- (void)play {
+    //call method step every 0.5 second
+    [self schedule:@selector(step) interval:0.5f];
+}
+
+- (void)pause {
+    [self unschedule:@selector(step)];
+}
+
+//this is the method that is scheduled
+- (void)step {
+    [_grid evolveStep];
+    
+    _generationScoreLabel = [NSString stringWithFormat:@"%i", _grid.generation];
+    _populationScoreLabel = [NSString stringWithFormat:@"%i", _grid.totalAlive];
+}
 
 @end
