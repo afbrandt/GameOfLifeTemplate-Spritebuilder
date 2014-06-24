@@ -9,13 +9,13 @@
 #import "MainScene.h"
 #import "Grid.h"
 
-@implementation MainScene
-
+@implementation MainScene {
 Grid *_grid;
 CCTimer *_timer;
 CCLabelTTF *_generationScoreLabel;
 CCLabelTTF *_populationScoreLabel;
 
+}
 - (id)init {
     self = [super init];
     
