@@ -135,9 +135,9 @@ float _cellHeight;
 
 - (void)updateCreatures {
 
-    for(int i = 0; [_gridArray count]; i++) {
+    for(int i = 0; i < [_gridArray count]; i++) {
         
-        for(int j = 0; [_gridArray[i] count]; j++) {
+        for(int j = 0; j < [_gridArray[i] count]; j++) {
             
             Creature *currentCreature = _gridArray[i][j];
             
